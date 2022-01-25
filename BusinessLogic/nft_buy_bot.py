@@ -20,6 +20,10 @@ try:
 except:
     print("You already lodged in")
 
+# single nft page
+all_page.driver.get("https://www.binance.com/en/nft/home")
+print(input("Start Buying : "))
+
 # TODO: find nft
 all_page.driver.get(NftCollectionPage.collection_link)
 print(input("Filter done:"))
