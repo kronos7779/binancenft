@@ -36,12 +36,16 @@ def switch_tab_to_single_nft(driver):
         all_page.test_click_confirm_button()
 
         print(input("Confirm Collection button :"))
+        success_paid_element = SingleNftBuy.success_paid
+        print(success_paid_element)
+
+        print(input("Confirm Collection button :"))
         payment = SingleNftBuy.failed_text
         print(payment)
-        print(payment.text)
         print(input("Confirm Collection button :"))
 
         if payment:
+            print(payment.text)
             all_page.test_click_return_button()
             all_page.test_click_confirm_button()
             payment = all_page.test_is_visible_payment_failed()

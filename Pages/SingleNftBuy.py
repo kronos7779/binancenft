@@ -18,6 +18,7 @@ class SingleNftBuy(BasePage):
     collections = (By.XPATH, "//button[normalize - space() = 'Collections']")
     failed_text = (By.XPATH, "//h6[contains(text(), 'Payment failed')]")
     return_button = (By.XPATH, "//button[normalize-space()='Return']")
+    success_paid = (By.XPATH, "// h6[normalize - space() = 'Success paid']")
 
     def __init__(self, driver):
         super().__init__(driver)

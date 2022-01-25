@@ -15,7 +15,11 @@ class NftCollectionPage(BasePage):
     # Real Collection
     collection_link = "https://www.binance.com/en/nft/shopWindow/NFT%E2%96%B5PRIDE?reSale=0&tradeType=0&orderBy=list_time&orderType=-1&isBack=1&uid=aa80c3015e02724438bd7cb9e662c5b8&order=list_time%40-1"
     # Low price NFT collection
+
     # collection_link = "https://www.binance.com/en/nft/shopWindow/Honyx?reSale=0&tradeType=0&currency=BUSD&orderBy=amount_sort&orderType=1&isBack=1&uid=e43e7da3bc0733ce6978dbe7db14bac1&order=amount_sort%401"
+
+    # collection_link = "https://www.binance.com/en/nft/shopWindow/Honyx?reSale=0&tradeType=0&currency=BUSD&orderBy=amount_sort&orderType=1&isBack=1&uid=e43e7da3bc0733ce6978dbe7db14bac1&order=amount_sort%401"
+
 
     allow_button = (By.XPATH, "//button[contains(text(),'Accept')]")
     search_box = (By.XPATH, "//input[@placeholder='Search items']")
