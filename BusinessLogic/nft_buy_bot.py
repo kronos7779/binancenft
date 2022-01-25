@@ -1,5 +1,7 @@
 import time
 
+from selenium.webdriver.common.by import By
+
 from Bots.AllPageBot import AllPageBot
 from Pages.NftCollectionPage import NftCollectionPage
 
@@ -23,6 +25,22 @@ all_page.driver.get(NftCollectionPage.collection_link)
 print(input("Filter done:"))
 
 
+def after_payment(success, payment_failed):
+    if len(success) == 1:
+        # print(success[0].text)
+        print("This function working")
+    elif len(payment_failed) == 1:
+        print(payment_failed[0].text)
+        all_page.test_click_return_button()
+        all_page.test_click_confirm_button()
+
+
+def ok_button():
+    for i in range(15):
+        print(i)
+        all_page.test_click_ok_button()
+
+
 def switch_tab_to_single_nft(driver):
     start_tab_time = time.time()
     window_before = driver.window_handles[0]
@@ -33,36 +51,25 @@ def switch_tab_to_single_nft(driver):
     if driver.window_handles[1] == window_after:
         driver.switch_to.window(window_after)
 
-        all_page.test_click_confirm_button()
+        sold_out_xpat = "//button[normalize-space()='Sold Out']"
+        # sold_out = all_page.driver.find_elements_by_xpath(sold_out_xpat)
 
-        print(input("Confirm Collection button :"))
-        success_paid_element = SingleNftBuy.success_paid
-        print(success_paid_element)
-
-        print(input("Confirm Collection button :"))
-        payment = SingleNftBuy.failed_text
-        print(payment)
-        print(input("Confirm Collection button :"))
-
-        if payment:
-            print(payment.text)
-            all_page.test_click_return_button()
+        if all_page.driver.find_elements_by_xpath(sold_out_xpat):
+            ok_button()
+        else:
             all_page.test_click_confirm_button()
-            payment = all_page.test_is_visible_payment_failed()
-            print("return tried once")
-            if payment:
-                all_page.test_click_return_button()
-                all_page.test_click_confirm_button()
-                payment = all_page.test_is_visible_payment_failed()
-                print("return tried twice")
-                if payment:
-                    all_page.test_click_return_button()
-                    all_page.test_click_confirm_button()
-                    print("return tried thrice")
-                    print(input("payment is not working. Restart the bot"))
 
+        # TODO Sold problem Fixed "//button[normalize-space()='Sold Out']"
 
-        print(input("Confirm Switch window :"))
+        success_paid_xpath = "//div[@class='css-57wjep']"
+        success = all_page.driver.find_elements(By.XPATH, success_paid_xpath)
+
+        payment_failed_xpath = "//h6[contains(text(), 'Payment failed')]"
+        payment_failed = all_page.driver.find_elements(By.XPATH, payment_failed_xpath)
+
+        after_payment(success, payment_failed)
+
+        # print(input("Confirm Switch window :"))
         driver.close()
         driver.switch_to.window(window_before)
         # all_page.test_click_ok_button()
@@ -79,7 +86,7 @@ def switch_tab_to_single_nft(driver):
 # Repeat the process
 buying_start_time = time.time()
 
-for idx in range(1000):
+for idx in range(6000):
     search_loop_start_time = time.time()
     try:
         nft_list = all_page.test_find_nft()
@@ -94,8 +101,7 @@ for idx in range(1000):
             nft_list[nft].click()
             switch_tab_to_single_nft(all_page.driver)
 
-            all_page.test_click_ok_button()
-            all_page.test_click_ok_button()
+            ok_button()
 
             # TODO: Base on nft no. we wll open tabs and buy all the nft together
             CurrentTime = time.time()

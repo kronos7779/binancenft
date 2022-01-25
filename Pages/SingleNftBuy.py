@@ -11,12 +11,12 @@ from Pages.BasePage import BasePage
 
 class SingleNftBuy(BasePage):
 
-    single_nft_page = "https://www.binance.com/en/nft/goods/detail?productId=23400545&isProduct=1"
+    single_nft_page = "https://www.binance.com/en/nft/goods/detail?productId=23684237&isProduct=1"
     buy_now_button = (By.XPATH, "//button[normalize-space()='Buy Now']")
     allow_button = (By.XPATH, "//button[contains(text(),'Accept')]")
     confirm = (By.XPATH, "//button[@class=' css-rtsl4l']")
     collections = (By.XPATH, "//button[normalize - space() = 'Collections']")
-    failed_text = (By.XPATH, "//h6[contains(text(), 'Payment failed')]")
+
     return_button = (By.XPATH, "//button[normalize-space()='Return']")
     success_paid = (By.XPATH, "// h6[normalize - space() = 'Success paid']")
 

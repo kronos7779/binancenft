@@ -11,4 +11,4 @@ class TestData:
     Login_page_title = "Log In | Binance"
     Search_page_title = "NFT▵PRIDE's Collection | Binance NFT"
 
-    Cookie_location = "G:/Project/binancenft/experiment/cookies.txt"
+    Cookie_location = "G:/Project/binancenft/Cookies/cookies.txt"
