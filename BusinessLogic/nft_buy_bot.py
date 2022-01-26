@@ -63,7 +63,7 @@ def switch_tab_to_single_nft(driver):
         sold_out_xpath = "//button[normalize-space()='Sold Out']"
         if all_page.driver.find_element_by_xpath(sold_out_xpath):
             print("NFT sold out go bach to search")
-            print(input("Find the Sold out button :"))
+            # print(input("Find the Sold out button :"))
             driver.close()
             driver.switch_to.window(window_before)
 
